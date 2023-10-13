@@ -2,9 +2,9 @@
 
 # Содержание
 - Laravel Framework 8.83.27;
-- PostgreSQL latest;
+- MySQL latest;
 - Nginx;
-- Pgadmin;
+- PHPMyAdmin;
 
 # Установка
 
@@ -14,4 +14,5 @@
 4. Запустить сборку проекта (docker-compose up --build);
 5. PROFIT! Можно пользоваться
 
-Готовый для работы проект упакованный в Docker Laravel + Nginx + PostgreSQL + Pgadmin. Скачал и работаешь, без долгих настроек.
+p.s. В зависимости от того, где вы работаете может потребоваться предварительно ввести: docker compose exec app bash, а затем использовать привычные artisan команды (при работе в VScode с расширением докера так)
+Готовый для работы проект упакованный в Docker Laravel + Nginx + MySQL + PHPMyAdmin. Скачал и работаешь, без долгих настроек.
