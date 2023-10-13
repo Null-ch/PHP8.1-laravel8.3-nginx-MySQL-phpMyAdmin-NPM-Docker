@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./:/var/www
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 8076:80
+    depends_on:
+      - app
+      - db
+    container_name: project_nginx
+
+  app:
+    build:
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+    container_name: project_app
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: test
+      DB_USERNAME: test-user
+      DB_PASSWORD: root
+    ports:
+      - "9000:9000"
+    working_dir: /var/www
+
+  db:
+    image: mysql:latest
+    container_name: project_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: test-user
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  pphpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - 8080:80
+    volumes: 
+      - /sessions
+    depends_on:
+      - db
