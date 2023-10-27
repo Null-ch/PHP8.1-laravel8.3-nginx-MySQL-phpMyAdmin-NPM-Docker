@@ -5,6 +5,7 @@
 - MySQL latest;
 - Nginx;
 - PHPMyAdmin;
+- NPM
 
 # Установка
 
