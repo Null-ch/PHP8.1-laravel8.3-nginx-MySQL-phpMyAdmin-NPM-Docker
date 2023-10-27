@@ -24,3 +24,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 #Необходимое расширение PHP PDO для PostgreSQL
 RUN docker-php-ext-install pdo_pgsql
+
+# Installing Node.js and Npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
